@@ -44,7 +44,7 @@ const AUDIENCES = [
 
 function EmailPage() {
   const [recipient, setRecipient] = useState("Jordan Hale (Northwind)");
-  const [audience, setAudience] = useState(AUDIENCES[0]);
+  const [audience, setAudience] = useState<string>("External · decision-maker");
   const [purpose, setPurpose] = useState(
     "Request a revised timeline for the Q3 rollout and confirm the onboarding date.",
   );
@@ -151,7 +151,7 @@ function EmailPage() {
             <OutputCard
               title="Generated draft"
               content={mutation.data?.text ?? null}
-              tags={[`Tone: ${tone}`, `Audience: ${audience.split(" · ")[0]}`, length]}
+              tags={[`Tone: ${tone}`, `Audience: ${audience.split(" · ")[0] ?? audience}`, length]}
               emptyHint="Your drafted email will appear here."
             />
           )}
